@@ -21,4 +21,14 @@ class Signa extends Model
         'deleted_date',
         'deleted_by'
     ];
+
+    public function resepRacikans()
+    {
+        return $this->hasMany(ResepRacikan::class);
+    }
+
+    public function resepNonRacikans()
+    {
+        return $this->hasMany(ResepNonRacikan::class);
+    }
 }

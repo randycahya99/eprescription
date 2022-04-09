@@ -18,4 +18,14 @@ class ResepRacikan extends Model
         'qty_obat_2',
         'qty_obat_3'
     ];
+
+    public function obats()
+    {
+        return $this->belongsTo(ObatAlkes::class, 'bidang_id');
+    }
+
+    public function signas()
+    {
+        return $this->belongsTo(Signa::class, 'bidang_id');
+    }
 }

@@ -14,4 +14,14 @@ class ResepNonRacikan extends Model
         'signa_id',
         'qty_obat'
     ];
+
+    public function obats()
+    {
+        return $this->belongsTo(ObatAlkes::class, 'bidang_id');
+    }
+
+    public function signas()
+    {
+        return $this->belongsTo(Signa::class, 'bidang_id');
+    }
 }
