@@ -21,7 +21,7 @@ E-Prescription merupakan sebuah aplikasi berbasis web sederhana yang digunakan u
 - Terakhir silahkan gunakan command "php artisan serve" untuk mengakses aplikasi ini secara local server di device Anda dan buka browser lalu ketik "http://127.0.0.1:8000/" atau bisa juga "http://localhost:8000/".
 
 
-* DISARANKAN UNTUK MENGIMPOR FILE eprescription.sql KE DATABASE ANDA, DIKARENAKAN ADA 2 TABEL YANG MERUPAKAN DATA MASTER DAN TIDAK BERUPA MIGRATION.
+* DISARANKAN UNTUK MENGIMPOR FILE eprescription.sql TERLEBIH DAHULU KE DATABASE ANDA, DIKARENAKAN ADA 2 TABEL YANG MERUPAKAN DATA MASTER DAN TIDAK BERUPA MIGRATION. (JIKA ANDA AKAN MELAKUKAN MIGRASI ULANG / REFRESH UNTUK TB MIGRATION LARAVEL GUNAKAN "php artisan migrate:refresh")
 * Untuk meng-copy ISI dari TABEL MASTER DATA (obatalkes_m dan signa_m) ke TABEL MIGRASI ANDA, silahkan gunakan syntax sql berikut: "INSERT INTO `obatalkes` SELECT * FROM `obatalkes_m`" dan juga "INSERT INTO `signa` SELECT * FROM `signa_m`.
 
 ## About Laravel
