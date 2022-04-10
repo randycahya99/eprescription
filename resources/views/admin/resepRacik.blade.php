@@ -122,7 +122,7 @@
 						<div class="invalid-feedback">Takaran obat/alkes 2 tidak valid</div>
 					</div>
                     <div class="form-group">
-						<label for="obatalkes_id_3">Obat/Alkes 3</label>
+						<label for="obatalkes_id_3">Obat/Alkes 3 <b>(opsional)</b></label>
 						<select class="form-control" name="obatalkes_id_3" id="obatalkes_id_3">
 							<option value="" selected>Pilih Obat/Alkes</option>
 
@@ -136,7 +136,7 @@
 						<div class="invalid-feedback">Obat/alkes 3 tidak valid</div>
 					</div>
                     <div class="form-group">
-						<label for="qty_obat_3">Takaran Obat/Alkes 3</label>
+						<label for="qty_obat_3">Takaran Obat/Alkes 3 <b>(opsional)</b></label>
 						<input type="number" class="form-control" name="qty_obat_3" id="qty_obat_3" placeholder="Masukan takaran obat">
 						<div class="invalid-feedback">Takaran obat/alkes 3 tidak valid</div>
 					</div>
@@ -307,7 +307,12 @@
 					<div class="col-sm-8">
 						<p>: {{$reseps->obats1->obatalkes_nama}} ({{$reseps->qty_obat_1}} g)</p>
 						<p>: {{$reseps->obats2->obatalkes_nama}} ({{$reseps->qty_obat_2}} g)</p>
-						<p>: {{$reseps->obats3->obatalkes_nama}} ({{$reseps->qty_obat_3}} g)</p>
+						{{-- <p>: {{$reseps->obats3->obatalkes_nama}} ({{$reseps->qty_obat_3}} g)</p> --}}
+						@if ($reseps->obats3 != NULL)
+							<p>: {{$reseps->obats3->obatalkes_nama}} ({{$reseps->qty_obat_3}} g)</p>
+						@else
+							<p></p>
+						@endif
 					</div>
 				</div>
 				<div class="form-group row">
