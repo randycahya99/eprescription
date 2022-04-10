@@ -238,6 +238,12 @@
 						<p>: {{$reseps->signas->signa_nama}}</p>
 					</div>
 				</div>
+				<div class="text-center">
+                    <form action="/cetakResepNonRacikan" method="GET">
+                        <input type="hidden" id="resep_id" name="resep_id" value="{{$reseps->id}}">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-print"> Cetak</i></button>
+                    </form>
+                </div>
 			
 			</div>
 		</div>

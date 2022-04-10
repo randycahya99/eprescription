@@ -305,11 +305,11 @@
 				<div class="form-group row">
 					<p class=" col-sm-4 font-weight-bold">Komposisi Obat</p>
 					<div class="col-sm-8">
-						<p>: {{$reseps->obats1->obatalkes_nama}} ({{$reseps->qty_obat_1}} g)</p>
-						<p>: {{$reseps->obats2->obatalkes_nama}} ({{$reseps->qty_obat_2}} g)</p>
+						<p>: {{$reseps->obats1->obatalkes_nama}} ({{$reseps->qty_obat_1}})</p>
+						<p>: {{$reseps->obats2->obatalkes_nama}} ({{$reseps->qty_obat_2}})</p>
 						{{-- <p>: {{$reseps->obats3->obatalkes_nama}} ({{$reseps->qty_obat_3}} g)</p> --}}
 						@if ($reseps->obats3 != NULL)
-							<p>: {{$reseps->obats3->obatalkes_nama}} ({{$reseps->qty_obat_3}} g)</p>
+							<p>: {{$reseps->obats3->obatalkes_nama}} ({{$reseps->qty_obat_3}})</p>
 						@else
 							<p></p>
 						@endif
@@ -321,6 +321,12 @@
 						<p>: {{$reseps->signas->signa_nama}}</p>
 					</div>
 				</div>
+				<div class="text-center">
+                    <form action="/cetakResepRacikan" method="GET">
+                        <input type="hidden" id="resep_id" name="resep_id" value="{{$reseps->id}}">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-print"> Cetak</i></button>
+                    </form>
+                </div>
 			
 			</div>
 		</div>

@@ -31,9 +31,11 @@ Route::get('/resep-racik', 'ObatController@ResepRacikan');
 Route::post('/resep-racik/addResepRacikan', 'ObatController@AddResepRacikan');
 Route::get('/resep-racik/{id}/deleteResepRacik', 'ObatController@DeleteResepRacik');
 Route::post('{id}/updateResepRacikan', 'ObatController@UpdateResepRacikan');
+Route::get('/cetakResepRacikan', 'ObatController@CetakResepRacikan');
 
 // Manajemen Data Resep Obat Non-Racik
 Route::get('/resep-non-racik', 'ObatController@ResepNonRacikan');
 Route::post('/resep-non-racik/addResepNonRacikan', 'ObatController@AddResepNonRacikan');
 Route::get('/resep-non-racik/{id}/deleteResepNonRacik', 'ObatController@DeleteResepNonRacik');
 Route::post('{id}/updateResepNonRacikan', 'ObatController@UpdateResepNonRacikan');
+Route::get('/cetakResepNonRacikan', 'ObatController@CetakResepNonRacikan');

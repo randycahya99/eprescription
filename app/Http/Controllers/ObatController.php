@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use PDF;
 use App\Models\ObatAlkes;
 use App\Models\Signa;
 use App\Models\ResepRacikan;
@@ -146,6 +147,28 @@ class ObatController extends Controller
         $resep->update($request->all());
 
         return redirect('/resep-non-racik')->with('sukses', 'Resep berhasil diperbarui.');
+    }
+
+    // Cetak Resep Racikan
+    public function CetakResepNonRacikan(Request $request)
+    {
+        // Menyimpan id Resep Kedalam Variabel
+        $id = $request->resep_id;
+
+        // Mencari Data Resep Non-Racikan Sesuai dengan id
+        $resep = ResepNonRacikan::find($id);
+
+        // dd($resep);
+
+        $pdf = PDF::loadView('admin.cetakResepNonRacikan', [
+            'resep' => $resep,
+        ]);
+
+        // return view('admin.cetakResepNonRacikan', [
+        //     'resep' => $resep,
+        // ]);
+
+        return $pdf->download('Resep.pdf');
     }
 
     // Menambahkan Data Resep Racikan
@@ -299,5 +322,27 @@ class ObatController extends Controller
         $resep->update($request->all());
 
         return redirect('/resep-racik')->with('sukses', 'Resep berhasil diperbarui.');
+    }
+
+    // Cetak Resep Racikan
+    public function CetakResepRacikan(Request $request)
+    {
+        // Menyimpan id Resep Kedalam Variabel
+        $id = $request->resep_id;
+
+        // Mencari Data Resep Racikan Sesuai dengan id
+        $resep = ResepRacikan::find($id);
+
+        // dd($resep);
+
+        $pdf = PDF::loadView('admin.cetakResepRacikan', [
+            'resep' => $resep,
+        ]);
+
+        // return view('admin.cetakResepRacikan', [
+        //     'resep' => $resep,
+        // ]);
+
+        return $pdf->download('Resep.pdf');
     }
 }
