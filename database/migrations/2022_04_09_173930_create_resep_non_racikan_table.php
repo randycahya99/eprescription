@@ -19,7 +19,7 @@ class CreateResepNonRacikanTable extends Migration
             $table->string('nama_resep');
             $table->unsignedBigInteger('obatalkes_id')->nullable();
             $table->unsignedBigInteger('signa_id')->nullable();
-            $table->decimal('qty_obat', 8, 2);
+            $table->decimal('qty_obat', 8, 2)->nullable();
             $table->timestamps();
             $table->foreign('obatalkes_id')->references('id')->on('obatalkes')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('signa_id')->references('id')->on('signa')->onUpdate('cascade')->onDelete('set null');

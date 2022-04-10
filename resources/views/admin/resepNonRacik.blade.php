@@ -99,7 +99,7 @@
 					</div>
                     <div class="form-group">
 						<label for="qty_obat">Takaran Obat/Alkes</label>
-						<input type="number" class="form-control" name="qty_obat" id="qty_obat" placeholder="Masukan takaran obat (g)" required>
+						<input type="number" class="form-control" name="qty_obat" id="qty_obat" placeholder="Masukan takaran obat" required>
 						<div class="invalid-feedback">Takaran obat/alkes tidak valid</div>
 					</div>
                     <div class="form-group">

@@ -19,14 +19,13 @@ class CreateSignaTable extends Migration
             $table->string('signa_nama');
             $table->string('additional_data');
             $table->date('created_date');
-            $table->integer('created_by');
             $table->integer('modified_count');
             $table->date('last_modified_date');
-            $table->integer('last_modified_by');
             $table->integer('is_deleted');
             $table->integer('is_active');
             $table->date('deleted_date');
             $table->integer('deleted_by');
+            $table->timestamps();
         });
     }
 

@@ -99,7 +99,7 @@
 					</div>
                     <div class="form-group">
 						<label for="qty_obat_1">Takaran Obat/Alkes 1</label>
-						<input type="number" class="form-control" name="qty_obat_1" id="qty_obat_1" placeholder="Masukan takaran obat (g)" required>
+						<input type="number" class="form-control" name="qty_obat_1" id="qty_obat_1" placeholder="Masukan takaran obat" required>
 						<div class="invalid-feedback">Takaran obat/alkes 1 tidak valid</div>
 					</div>
                     <div class="form-group">
@@ -118,12 +118,12 @@
 					</div>
                     <div class="form-group">
 						<label for="qty_obat_2">Takaran Obat/Alkes 2</label>
-						<input type="number" class="form-control" name="qty_obat_2" id="qty_obat_2" placeholder="Masukan takaran obat (g)" required>
+						<input type="number" class="form-control" name="qty_obat_2" id="qty_obat_2" placeholder="Masukan takaran obat" required>
 						<div class="invalid-feedback">Takaran obat/alkes 2 tidak valid</div>
 					</div>
                     <div class="form-group">
 						<label for="obatalkes_id_3">Obat/Alkes 3</label>
-						<select class="form-control" name="obatalkes_id_3" id="obatalkes_id_3" required>
+						<select class="form-control" name="obatalkes_id_3" id="obatalkes_id_3">
 							<option value="" selected>Pilih Obat/Alkes</option>
 
 							@foreach($obat as $obats)
@@ -137,7 +137,7 @@
 					</div>
                     <div class="form-group">
 						<label for="qty_obat_3">Takaran Obat/Alkes 3</label>
-						<input type="number" class="form-control" name="qty_obat_3" id="qty_obat_3" placeholder="Masukan takaran obat (g)" required>
+						<input type="number" class="form-control" name="qty_obat_3" id="qty_obat_3" placeholder="Masukan takaran obat">
 						<div class="invalid-feedback">Takaran obat/alkes 3 tidak valid</div>
 					</div>
                     <div class="form-group">
@@ -233,7 +233,7 @@
 					</div>
                     <div class="form-group">
 						<label for="obatalkes_id_3">Obat/Alkes 3</label>
-						<select class="form-control" name="obatalkes_id_3" id="obatalkes_id_3" required>
+						<select class="form-control" name="obatalkes_id_3" id="obatalkes_id_3">
 							<option value="{{$reseps['obatalkes_id_3']}}" selected>{{ !empty($reseps->obats3) ? $reseps->obats3['obatalkes_nama']:'' }}</option>
 
 							@foreach($obat as $obats)
@@ -247,7 +247,7 @@
 					</div>
                     <div class="form-group">
 						<label for="qty_obat_3">Takaran Obat 3</label>
-						<input type="number" class="form-control" name="qty_obat_3" id="qty_obat_3" value="{{$reseps['qty_obat_3']}}" required>
+						<input type="number" class="form-control" name="qty_obat_3" id="qty_obat_3" value="{{$reseps['qty_obat_3']}}">
 						<div class="invalid-feedback">Takaran obat 3 tidak valid</div>
 					</div>
                     <div class="form-group">

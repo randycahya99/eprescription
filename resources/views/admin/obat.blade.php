@@ -34,7 +34,7 @@
 							<td align="center">{{$loop->iteration}}</td>
 							<td align="center">{{$obats->obatalkes_kode}}</td>
 							<td align="center">{{$obats->obatalkes_nama}}</td>
-							<td align="center">{{$obats->stok}} g</td>
+							<td align="center">{{$obats->stok}}</td>
 
 							<td align="center">
 								<a href="/resep-racik/{{$obats->id}}/deleteResepRacik" class="btn btn-danger btn-circle btn-sm hapusFoto" title="Hapus">

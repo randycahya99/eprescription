@@ -76,18 +76,36 @@ class ObatController extends Controller
             'signa_id.required' => 'Signa tidak boleh kosong.',
         ]);
 
-        // Menambahkan Data Resep Non-Racikan ke Database
-        $resep = ResepNonRacikan::create([
-            'kode_resep' => $request->kode_resep,
-            'nama_resep' => $request->nama_resep,
-            'obatalkes_id' => $request->obatalkes_id,
-            'qty_obat' => $request->qty_obat,
-            'signa_id' => $request->signa_id
-        ]);
+        // Mengecek & Mengurangi Stok Obat
+        $obat = ObatAlkes::where('id',$request->obatalkes_id)->first();
 
-        // dd($resep);
+        // dd($obat);
 
-        return redirect('/resep-non-racik')->with('sukses', 'Data resep non-racikan berhasil ditambahkan.');
+        if ($obat->stok < $request->qty_obat) {
+            // dd('gagal');
+
+            return redirect()->back()->with('message', 'Gagal menambahkan resep karena stok obat tidak cukup.');
+        } else {
+            // dd('sukses');
+
+            $obat->stok = $obat->stok - $request->qty_obat;
+            $obat->save();
+
+            // dd($obat->stok);
+
+            // Menambahkan Data Resep Non-Racikan ke Database
+            $resep = ResepNonRacikan::create([
+                'kode_resep' => $request->kode_resep,
+                'nama_resep' => $request->nama_resep,
+                'obatalkes_id' => $request->obatalkes_id,
+                'qty_obat' => $request->qty_obat,
+                'signa_id' => $request->signa_id
+            ]);
+
+            // dd($obat);
+
+            return redirect('/resep-non-racik')->with('sukses', 'Data resep non-racikan berhasil ditambahkan.');
+        }
     }
 
     // Menghapus Data Resep Non-Racikan
@@ -139,10 +157,10 @@ class ObatController extends Controller
             'nama_resep' => 'required|string',
             'obatalkes_id_1' => 'required',
             'obatalkes_id_2' => 'required',
-            'obatalkes_id_3' => 'required',
+            // 'obatalkes_id_3' => 'required',
             'qty_obat_1' => 'required|numeric',
             'qty_obat_2' => 'required|numeric',
-            'qty_obat_3' => 'required|numeric',
+            // 'qty_obat_3' => 'required|numeric',
             'signa_id' => 'required'
         ], [
             'kode_resep.required' => 'Kode resep tidak boleh kosong.',
@@ -151,32 +169,64 @@ class ObatController extends Controller
             'nama_resep.string' => 'Nama resep harus berupa string.',
             'obatalkes_id_1.required' => 'Obat tidak boleh kosong.',
             'obatalkes_id_2.required' => 'Obat tidak boleh kosong.',
-            'obatalkes_id_3.required' => 'Obat tidak boleh kosong.',
+            // 'obatalkes_id_3.required' => 'Obat tidak boleh kosong.',
             'qty_obat_1.required' => 'Takaran obat tidak boleh kosong.',
             'qty_obat_1.numeric' => 'Takaran obat harus berupa angka.',
             'qty_obat_2.required' => 'Takaran obat tidak boleh kosong.',
             'qty_obat_2.numeric' => 'Takaran obat harus berupa angka.',
-            'qty_obat_3.required' => 'Takaran obat tidak boleh kosong.',
-            'qty_obat_3.numeric' => 'Takaran obat harus berupa angka.',
+            // 'qty_obat_3.required' => 'Takaran obat tidak boleh kosong.',
+            // 'qty_obat_3.numeric' => 'Takaran obat harus berupa angka.',
             'signa_id.required' => 'Signa tidak boleh kosong.',
         ]);
 
-        // Menambahkan Data Resep Racikan ke Database
-        $resep = ResepRacikan::create([
-            'kode_resep' => $request->kode_resep,
-            'nama_resep' => $request->nama_resep,
-            'obatalkes_id_1' => $request->obatalkes_id_1,
-            'obatalkes_id_2' => $request->obatalkes_id_2,
-            'obatalkes_id_3' => $request->obatalkes_id_3,
-            'qty_obat_1' => $request->qty_obat_1,
-            'qty_obat_2' => $request->qty_obat_2,
-            'qty_obat_3' => $request->qty_obat_3,
-            'signa_id' => $request->signa_id
-        ]);
+        // Mengecek & Mengurangi Stok Obat
+        $obat1 = ObatAlkes::where('id',$request->obatalkes_id_1)->first();
+        $obat2 = ObatAlkes::where('id',$request->obatalkes_id_2)->first();
+        $obat3 = ObatAlkes::where('id',$request->obatalkes_id_3)->first();
 
-        // dd($resep);
+        // dd($obat3);
 
-        return redirect('/resep-racik')->with('sukses', 'Data resep racikan berhasil ditambahkan.');
+        if ($obat1->stok < $request->qty_obat_1) {
+            // dd('gagal 1');
+
+            return redirect()->back()->with('message', 'Gagal menambahkan resep karena stok obat 1 tidak cukup.');
+        } elseif ($obat2->stok < $request->qty_obat_2) {
+            // dd('gagal 2');
+
+            return redirect()->back()->with('message', 'Gagal menambahkan resep karena stok obat 2 tidak cukup.');
+        } elseif ($obat3->stok < $request->qty_obat_3) {
+            // dd('gagal 3');
+
+            return redirect()->back()->with('message', 'Gagal menambahkan resep karena stok obat 3 tidak cukup.');
+        } else {
+            // dd('sukses');
+
+            $obat1->stok = $obat1->stok - $request->qty_obat_1;
+            $obat2->stok = $obat2->stok - $request->qty_obat_2;
+            $obat3->stok = $obat3->stok - $request->qty_obat_3;
+            $obat1->save();
+            $obat2->save();
+            $obat3->save();
+            
+            // dd($obat2->stok);
+
+            // Menambahkan Data Resep Racikan ke Database
+            $resep = ResepRacikan::create([
+                'kode_resep' => $request->kode_resep,
+                'nama_resep' => $request->nama_resep,
+                'obatalkes_id_1' => $request->obatalkes_id_1,
+                'obatalkes_id_2' => $request->obatalkes_id_2,
+                'obatalkes_id_3' => $request->obatalkes_id_3,
+                'qty_obat_1' => $request->qty_obat_1,
+                'qty_obat_2' => $request->qty_obat_2,
+                'qty_obat_3' => $request->qty_obat_3,
+                'signa_id' => $request->signa_id
+            ]);
+
+            // dd($resep);
+
+            return redirect('/resep-racik')->with('sukses', 'Data resep racikan berhasil ditambahkan.');
+        }
     }
 
     // Menghapus Data Resep Racikan
@@ -200,10 +250,10 @@ class ObatController extends Controller
             'nama_resep' => 'required|string',
             'obatalkes_id_1' => 'required',
             'obatalkes_id_2' => 'required',
-            'obatalkes_id_3' => 'required',
+            // 'obatalkes_id_3' => 'required',
             'qty_obat_1' => 'required|numeric',
             'qty_obat_2' => 'required|numeric',
-            'qty_obat_3' => 'required|numeric',
+            // 'qty_obat_3' => 'required|numeric',
             'signa_id' => 'required'
         ], [
             // 'kode_resep.required' => 'Kode resep tidak boleh kosong.',
@@ -212,13 +262,13 @@ class ObatController extends Controller
             'nama_resep.string' => 'Nama resep harus berupa string.',
             'obatalkes_id_1.required' => 'Obat tidak boleh kosong.',
             'obatalkes_id_2.required' => 'Obat tidak boleh kosong.',
-            'obatalkes_id_3.required' => 'Obat tidak boleh kosong.',
+            // 'obatalkes_id_3.required' => 'Obat tidak boleh kosong.',
             'qty_obat_1.required' => 'Takaran obat tidak boleh kosong.',
             'qty_obat_1.numeric' => 'Takaran obat harus berupa angka.',
             'qty_obat_2.required' => 'Takaran obat tidak boleh kosong.',
             'qty_obat_2.numeric' => 'Takaran obat harus berupa angka.',
-            'qty_obat_3.required' => 'Takaran obat tidak boleh kosong.',
-            'qty_obat_3.numeric' => 'Takaran obat harus berupa angka.',
+            // 'qty_obat_3.required' => 'Takaran obat tidak boleh kosong.',
+            // 'qty_obat_3.numeric' => 'Takaran obat harus berupa angka.',
             'signa_id.required' => 'Signa tidak boleh kosong.',
         ]);
 

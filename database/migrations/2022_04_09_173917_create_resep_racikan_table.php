@@ -21,9 +21,9 @@ class CreateResepRacikanTable extends Migration
             $table->unsignedBigInteger('obatalkes_id_2')->nullable();
             $table->unsignedBigInteger('obatalkes_id_3')->nullable();
             $table->unsignedBigInteger('signa_id')->nullable();
-            $table->decimal('qty_obat_1', 8, 2);
-            $table->decimal('qty_obat_2', 8, 2);
-            $table->decimal('qty_obat_3', 8, 2);
+            $table->decimal('qty_obat_1', 8, 2)->nullable();
+            $table->decimal('qty_obat_2', 8, 2)->nullable();
+            $table->decimal('qty_obat_3', 8, 2)->nullable();
             $table->timestamps();
             $table->foreign('obatalkes_id_1')->references('id')->on('obatalkes')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('obatalkes_id_2')->references('id')->on('obatalkes')->onUpdate('cascade')->onDelete('set null');

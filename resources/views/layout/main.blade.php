@@ -226,6 +226,16 @@
         </script>
         @endif
 
+        @if(session('message'))    
+        <script type="text/javascript">
+            Swal.fire(
+            'Mohon Maaf',
+            '{{session('message')}}',
+            'info'
+            )
+        </script>
+        @endif
+
         <!-- SweetAlert HapusResep -->
         <script type="text/javascript">
             $('.hapusResep').on('click', function(e){
