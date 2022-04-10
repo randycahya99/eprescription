@@ -17,11 +17,11 @@ class ResepNonRacikan extends Model
 
     public function obats()
     {
-        return $this->belongsTo(ObatAlkes::class, 'bidang_id');
+        return $this->belongsTo(ObatAlkes::class, 'obatalkes_id');
     }
 
     public function signas()
     {
-        return $this->belongsTo(Signa::class, 'bidang_id');
+        return $this->belongsTo(Signa::class, 'signa_id');
     }
 }

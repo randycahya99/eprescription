@@ -23,7 +23,7 @@
 							<th width="20">No</th>
 							<th width="200">Kode Resep</th>
 							<th width="200">Resep</th>
-							<th>Aturan Penggunaan</th>
+							<th>Aturan Pakai</th>
 							<th width="80">Aksi</th>
 						</tr>
 					</thead>
@@ -34,16 +34,16 @@
 							<td align="center">{{$loop->iteration}}</td>
 							<td align="center">{{$reseps->kode_resep}}</td>
 							<td align="center">{{$reseps->nama_resep}}</td>
-							<td align="center">{{$reseps->signa}}</td>
+							<td align="center">{{$reseps->signas->signa_nama}}</td>
 
 							<td align="center">
-								<a href="/resep-racik/{{$reseps->id}}/deleteResepRacik" class="btn btn-danger btn-circle btn-sm hapusFoto" title="Hapus">
+								<a href="/resep-non-racik/{{$reseps->id}}/deleteResepNonRacik" class="btn btn-danger btn-circle btn-sm hapusResep" title="Hapus">
 									<i class="fas fa-trash"></i>
 								</a>
-								<button class="btn btn-primary btn-circle btn-sm" title="Edit" data-toggle="modal" data-target="#editData{{-- {{$reseps['id']}} --}}">
+								<button class="btn btn-primary btn-circle btn-sm" title="Edit" data-toggle="modal" data-target="#editData{{$reseps['id']}}">
 									<i class="fas fa-edit"></i>
 								</button>
-								<button class="btn btn-success btn-circle btn-sm" title="Detail" data-toggle="modal" data-target="#detailData{{-- {{$reseps['id']}} --}}">
+								<button class="btn btn-success btn-circle btn-sm" title="Detail" data-toggle="modal" data-target="#detailData{{$reseps['id']}}">
 									<i class="fas fa-eye"></i>
 								</button>
 							</td>
@@ -62,38 +62,59 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Tambah Foto Slider</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Tambah Resep Non-Racikan</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 
 			<div class="modal-body">
-				<form action="foto-slider/addFotoSlider" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+				<form action="resep-non-racik/addResepNonRacikan" method="POST" class="needs-validation" novalidate>
 
 					@csrf
 
 					<div class="form-group">
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="foto" id="foto" required>
-							<label class="custom-file-label" for="foto">Pilih foto slider...</label>
-							<div class="invalid-feedback">Foto tidak valid</div>
-						</div>
+                        <label for="kode_resep">Kode Resep</label>
+                        <input type="text" class="form-control" name="kode_resep" id="kode_resep" placeholder="Tuliskan kode resep" required>
+                        <div class="invalid-feedback">Kode resep tidak valid</div>
 					</div>
-					{{-- <div class="form-group">
-						<label class="form-label">Pilih Foto Slider</label>
-						<input type="file" name="foto" id="foto" class="form-control" required>
-						<div class="invalid-feedback">Foto tidak valid</div>
-					</div> --}}
                     <div class="form-group">
-						<label>Judul</label>
-						<textarea rows="3" name="judul" id="judul" class="form-control" placeholder="Masukan judul" required></textarea>
-						<div class="invalid-feedback">Judul tidak valid</div>
+						<label for="nama_resep">Nama Resep</label>
+						<input type="text" class="form-control" name="nama_resep" id="nama_resep" placeholder="Tuliskan nama resep" required>
+						<div class="invalid-feedback">Nama resep tidak valid</div>
 					</div>
-					<div class="form-group">
-						<label>Deskripsi</label>
-						<textarea rows="3" name="deskripsi" id="deskripsi" class="form-control" placeholder="Masukan deskripsi" required></textarea>
-						<div class="invalid-feedback">Deskripsi tidak valid</div>
+                    <div class="form-group">
+						<label for="obatalkes_id">Obat/Alkes</label>
+						<select class="form-control" name="obatalkes_id" id="obatalkes_id" required>
+							<option value="" selected>Pilih Obat/Alkes</option>
+
+							@foreach($obat as $obats)
+
+							<option value="{{ $obats->id }}">{{ $obats->obatalkes_nama }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Obat/alkes tidak valid</div>
+					</div>
+                    <div class="form-group">
+						<label for="qty_obat">Takaran Obat/Alkes</label>
+						<input type="number" class="form-control" name="qty_obat" id="qty_obat" placeholder="Masukan takaran obat (g)" required>
+						<div class="invalid-feedback">Takaran obat/alkes tidak valid</div>
+					</div>
+                    <div class="form-group">
+						<label for="signa_id">Signa</label>
+						<select class="form-control" name="signa_id" id="signa_id" required>
+							<option value="" selected>Pilih Signa</option>
+
+							@foreach($signa as $signas)
+
+							<option value="{{ $signas->id }}">{{ $signas->signa_nama }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Signa tidak valid</div>
 					</div>
 
 					<div class="modal-footer">
@@ -105,6 +126,124 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- Modal Edit Data -->
+@foreach($resep as $reseps)
+<div class="modal fade" id="editData{{$reseps['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit Resep Non-Racikan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<form action="{{$reseps->id}}/updateResepNonRacikan" method="POST" class="needs-validation" novalidate>
+					
+                    @csrf
+					
+					<div class="form-group">
+                        <label for="kode_resep">Kode Resep</label>
+                        <input type="text" class="form-control" name="kode_resep" id="kode_resep" value="{{$reseps['kode_resep']}}" readonly>
+                        <div class="invalid-feedback">Kode resep tidak valid</div>
+					</div>
+                    <div class="form-group">
+						<label for="nama_resep">Nama Resep</label>
+						<input type="text" class="form-control" name="nama_resep" id="nama_resep" value="{{$reseps['nama_resep']}}" required>
+						<div class="invalid-feedback">Nama resep tidak valid</div>
+					</div>
+                    <div class="form-group">
+						<label for="obatalkes_id">Obat/Alkes</label>
+						<select class="form-control" name="obatalkes_id" id="obatalkes_id" required>
+							<option value="{{$reseps['obatalkes_id']}}" selected>{{ !empty($reseps->obats) ? $reseps->obats['obatalkes_nama']:'' }}</option>
+
+							@foreach($obat as $obats)
+
+							<option value="{{ $obats->id }}">{{ $obats->obatalkes_nama }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Obat/alkes tidak valid</div>
+					</div>
+                    <div class="form-group">
+						<label for="qty_obat">Takaran Obat/Alkes</label>
+						<input type="number" class="form-control" name="qty_obat" id="qty_obat" value="{{$reseps['qty_obat']}}" required>
+						<div class="invalid-feedback">Takaran obat/alkes tidak valid</div>
+					</div>
+                    <div class="form-group">
+						<label for="signa_id">Signa</label>
+						<select class="form-control" name="signa_id" id="signa_id" required>
+							<option value="{{$reseps['signa_id']}}" selected>{{ !empty($reseps->signas) ? $reseps->signas['signa_nama']:'' }}</option>
+
+							@foreach($signa as $signas)
+
+							<option value="{{ $signas->id }}">{{ $signas->signa_nama }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Signa tidak valid</div>
+					</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+						<button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
+
+<!-- Modal Detail Data -->
+@foreach($resep as $reseps)
+<div class="modal fade" id="detailData{{$reseps['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Detail Resep</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Kode Resep</p>
+					<div class="col-sm-8">
+						<p>: {{$reseps->kode_resep}}</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Nama Resep</p>
+					<div class="col-sm-8">
+						<p>: {{$reseps->nama_resep}}</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Komposisi Obat</p>
+					<div class="col-sm-8">
+						<p>: {{$reseps->obats->obatalkes_nama}} ({{$reseps->qty_obat}} g)</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Aturan Pakai</p>
+					<div class="col-sm-8">
+						<p>: {{$reseps->signas->signa_nama}}</p>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 @endsection
 

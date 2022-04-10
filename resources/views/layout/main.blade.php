@@ -108,62 +108,12 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
-                <!-- Nav Item - Alerts -->
-                {{-- <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw"></i>
-                    <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter">3+</span>
-                </a>
-                <!-- Dropdown - Alerts -->
-                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                    <h6 class="dropdown-header">
-                    Pemberitahuan
-                    </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                        <i class="fas fa-file-alt text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                    </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-success">
-                        <i class="fas fa-donate text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 7, 2019</div>
-                        $290.29 has been deposited into your account!
-                    </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-warning">
-                        <i class="fas fa-exclamation-triangle text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 2, 2019</div>
-                        Spending Alert: We've noticed unusually high spending for your account.
-                    </div>
-                    </a>
-                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                </div>
-                </li> --}}
-
-
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{-- {{auth()->user()->username}} --}}admin</span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{-- {{auth()->user()->username}} --}}user</span>
                     <img class="img-profile rounded-circle" src="" alt="">
                 </a>
                 <!-- Dropdown - User Information -->
@@ -273,231 +223,40 @@
             '{{session('sukses')}}',
             'success'
             )
-            </script>
-            @endif
-
-            <!-- SweetAlert HapusUnit -->
-            <script type="text/javascript">
-            $('.hapusUnit').on('click', function(e){
-                e.preventDefault();
-
-                const href = $(this).attr('href')
-
-                Swal.fire({
-                title: 'Ingin Menghapus Data?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-                }).then((result) => {
-                if (result.value) {
-                    setTimeout(function(){ 
-
-                    document.location.href = href;
-
-                    }, 900);
-                    Swal.fire(
-                    'Terhapus',
-                    'Data Berhasil dihapus',
-                    'success',
-                    'showConfirmButton: false',
-                    'timer: 2000'
-                    )
-                }
-                })
-            })
-            </script>
-
-            <!-- SweetAlert HapusCategory -->
-            <script type="text/javascript">
-            $('.hapusCategory').on('click', function(e){
-                e.preventDefault();
-
-                const href = $(this).attr('href')
-
-                Swal.fire({
-                title: 'Ingin Menghapus Data?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-                }).then((result) => {
-                if (result.value) {
-                    setTimeout(function(){ 
-
-                    document.location.href = href;
-
-                    }, 900);
-                    Swal.fire(
-                    'Terhapus',
-                    'Data Berhasil dihapus',
-                    'success',
-                    'showConfirmButton: false',
-                    'timer: 2000'
-                    )
-                }
-                })
-            })
-            </script>
-
-            <!-- SweetAlert HapusProduct -->
-            <script type="text/javascript">
-            $('.hapusProduct').on('click', function(e){
-                e.preventDefault();
-
-                const href = $(this).attr('href')
-
-                Swal.fire({
-                title: 'Ingin Menghapus Data?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-                }).then((result) => {
-                if (result.value) {
-                    setTimeout(function(){ 
-
-                    document.location.href = href;
-
-                    }, 900);
-                    Swal.fire(
-                    'Terhapus',
-                    'Data Berhasil dihapus',
-                    'success',
-                    'showConfirmButton: false',
-                    'timer: 2000'
-                    )
-                }
-                })
-            })
-            </script>
-
-            <!-- SweetAlert HapusFoto -->
-            <script type="text/javascript">
-            $('.hapusFoto').on('click', function(e){
-                e.preventDefault();
-
-                const href = $(this).attr('href')
-
-                Swal.fire({
-                title: 'Ingin Menghapus Data?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-                }).then((result) => {
-                if (result.value) {
-                    setTimeout(function(){ 
-
-                    document.location.href = href;
-
-                    }, 900);
-                    Swal.fire(
-                    'Terhapus',
-                    'Foto Berhasil dihapus',
-                    'success',
-                    'showConfirmButton: false',
-                    'timer: 2000'
-                    )
-                }
-                })
-            })
-            </script>
-
-
-            <!-- SweetAlert HapusPemesanan -->
-            <script type="text/javascript">
-            $('.hapusPemesanan').on('click', function(e){
-                e.preventDefault();
-
-                const href = $(this).attr('href')
-
-                Swal.fire({
-                title: 'Ingin Menghapus Data?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-                }).then((result) => {
-                if (result.value) {
-                    setTimeout(function(){ 
-
-                    document.location.href = href;
-
-                    }, 900);
-                    Swal.fire(
-                    'Terhapus',
-                    'Data Pemesanan Berhasil dihapus',
-                    'success',
-                    'showConfirmButton: false',
-                    'timer: 2000'
-                    )
-                }
-                })
-            })
-            </script>
-
-            <!-- Menambahkan fungsi Rupiah pada bagian produk-->
-            <script type="text/javascript">
-            var rupiah2 = document.getElementById('purchase_price');
-            rupiah2.addEventListener('keyup', function(e){
-                rupiah2.value = formatRupiah(this.value, 'Rp. ');
-            });
-
-            var rupiah = document.getElementById('selling_price');
-            rupiah.addEventListener('keyup', function(e){
-                rupiah.value = formatRupiah(this.value, 'Rp. ');
-            });
-
-            /* Fungsi formatRupiah */
-            function formatRupiah(angka, prefix){
-                var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split       = number_string.split(','),
-                sisa        = split[0].length % 3,
-                rupiah        = split[0].substr(0, sisa),
-                ribuan        = split[0].substr(sisa).match(/\d{3}/gi);
-
-            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if(ribuan){
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
-            }
-
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp.' + rupiah : '');
-        }
         </script>
+        @endif
 
-        <!-- SCRIPT RP UNTUK BAYAR -->
+        <!-- SweetAlert HapusResep -->
         <script type="text/javascript">
+            $('.hapusResep').on('click', function(e){
+                e.preventDefault();
 
-        var rupiah3 = document.getElementById('bayarid');
-        rupiah3.addEventListener('keyup', function(e){
-            rupiah3.value = formatRupiah(this.value, 'Rp. ');
-        });
+                const href = $(this).attr('href')
 
-        /* Fungsi formatRupiah */
-        function formatRupiah(angka, prefix){
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split       = number_string.split(','),
-            sisa        = split[0].length % 3,
-            rupiah        = split[0].substr(0, sisa),
-            ribuan        = split[0].substr(sisa).match(/\d{3}/gi);
+                Swal.fire({
+                title: 'Ingin Menghapus Resep?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+                }).then((result) => {
+                if (result.value) {
+                    setTimeout(function(){ 
 
-            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if(ribuan){
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
-            }
+                    document.location.href = href;
 
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp.' + rupiah : '');
-        }
+                    }, 900);
+                    Swal.fire(
+                    'Terhapus',
+                    'Resep berhasil dihapus',
+                    'success',
+                    'showConfirmButton: false',
+                    'timer: 2000'
+                    )
+                }
+                })
+            })
         </script>
     </body>
     </html>
