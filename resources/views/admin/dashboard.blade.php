@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title','Dashboard')
+@section('title','E-Prescription')
 
 @section('container')
 <!-- Begin Page Content -->
@@ -23,11 +23,11 @@
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
-									<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Customer</div>
-									{{-- <div class="mb-0 font-weight-bold text-gray-800">{{$customer}} Orang</div> --}}
+									<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Obat & Alkes</div>
+									<div class="mb-0 font-weight-bold text-gray-800">{{$obat}} Jenis</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-users fa-2x text-gray-300"></i>
+									<i class="fas fa-box-open fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -39,11 +39,11 @@
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
-									<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Customer Approve</div>
-									{{-- <div class="mb-0 font-weight-bold text-gray-800">{{$approve}} Orang</div> --}}
+									<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Resep Racikan</div>
+									<div class="mb-0 font-weight-bold text-gray-800">{{$resepRacikan}} Resep</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-users fa-2x text-gray-300"></i>
+									<i class="fas fa-box-open fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -55,11 +55,11 @@
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
-									<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Customer Valid</div>
-									{{-- <div class="mb-0 font-weight-bold text-gray-800">{{$valid}} Orang</div> --}}
+									<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Jumlah Resep Non-Racikan</div>
+									<div class="mb-0 font-weight-bold text-gray-800">{{$resepNonRacikan}} Resep</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-users fa-2x text-gray-300"></i>
+									<i class="fas fa-box-open fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -75,43 +75,11 @@
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
-									<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Customer In Process</div>
-									{{-- <div class="mb-0 font-weight-bold text-gray-800">{{$process}} Orang</div> --}}
+									<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Jumlah Signa</div>
+									<div class="mb-0 font-weight-bold text-gray-800">{{$signa}} Aturan Pakai</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-users fa-2x text-gray-300"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-4 col-md-6 mb-4">
-					<div class="card border-left-secondary shadow h-100 py-2">
-						<div class="card-body">
-							<div class="row no-gutters align-items-center">
-								<div class="col mr-2">
-									<div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Customer Cancel</div>
-									{{-- <div class="mb-0 font-weight-bold text-gray-800">{{$cancel}} Orang</div> --}}
-								</div>
-								<div class="col-auto">
-									<i class="fas fa-users fa-2x text-gray-300"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-4 col-md-6 mb-4">
-					<div class="card border-left-dark shadow h-100 py-2">
-						<div class="card-body">
-							<div class="row no-gutters align-items-center">
-								<div class="col mr-2">
-									<div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Customer Reject</div>
-									{{-- <div class="mb-0 font-weight-bold text-gray-800">{{$reject}} Orang</div> --}}
-								</div>
-								<div class="col-auto">
-									<i class="fas fa-users fa-2x text-gray-300"></i>
+									<i class="fas fa-box-open fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>

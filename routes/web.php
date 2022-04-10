@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Dashboard
-Route::get('/dashboard', 'DashboardController@Dashboard');
+Route::get('/', 'DashboardController@Dashboard');
 
 // Master Data Obat & Alkes
 Route::get('/obat', 'ObatController@Obat');

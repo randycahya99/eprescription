@@ -37,13 +37,13 @@
 							<td align="center">{{$obats->stok}}</td>
 
 							<td align="center">
-								<a href="/resep-racik/{{$obats->id}}/deleteResepRacik" class="btn btn-danger btn-circle btn-sm hapusFoto" title="Hapus">
+								{{-- <a href="/resep-racik/{{$obats->id}}/deleteResepRacik" class="btn btn-danger btn-circle btn-sm hapusFoto" title="Hapus">
 									<i class="fas fa-trash"></i>
-								</a>
-								<button class="btn btn-primary btn-circle btn-sm" title="Edit" data-toggle="modal" data-target="#editData{{-- {{$obats['id']}} --}}">
+								</a> --}}
+								{{-- <button class="btn btn-primary btn-circle btn-sm" title="Edit" data-toggle="modal" data-target="#editData{{$obats['id']}}">
 									<i class="fas fa-edit"></i>
-								</button>
-								<button class="btn btn-success btn-circle btn-sm" title="Detail" data-toggle="modal" data-target="#detailData{{-- {{$obats['id']}} --}}">
+								</button> --}}
+								<button class="btn btn-success btn-sm" title="Detail" data-toggle="modal" data-target="#detailData{{$obats['id']}}">
 									<i class="fas fa-eye"></i>
 								</button>
 							</td>
@@ -55,6 +55,46 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- Modal Detail Data -->
+@foreach($obat as $obats)
+<div class="modal fade" id="detailData{{$obats['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Detail Obat</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Kode Obat</p>
+					<div class="col-sm-8">
+						<p>: {{$obats->obatalkes_kode}}</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Nama Obat</p>
+					<div class="col-sm-8">
+						<p>: {{$obats->obatalkes_nama}}</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Stok Obat</p>
+					<div class="col-sm-8">
+						<p>: {{$obats->stok}}</p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 @endsection
 

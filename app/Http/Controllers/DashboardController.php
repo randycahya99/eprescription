@@ -14,6 +14,16 @@ class DashboardController extends Controller
     // Menampilkan Halaman Dashboard
     public function Dashboard()
     {
-        return view('admin/dashboard');
+        $obat = ObatAlkes::count();
+        $signa = Signa::count();
+        $resepRacikan = ResepRacikan::count();
+        $resepNonRacikan = ResepNonRacikan::count();
+
+        return view('admin/dashboard', compact(
+            'obat',
+            'signa',
+            'resepRacikan',
+            'resepNonRacikan'
+        ));
     }
 }
